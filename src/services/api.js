@@ -6,5 +6,12 @@ export default {
       .then(response => {
         return response.data
       })
+  },
+
+  getUser (id) {
+    return axios.get(`/api/user/${id}`)
+      .then(response => {
+        return response.data
+      })
   }
 }
