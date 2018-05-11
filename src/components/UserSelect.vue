@@ -9,16 +9,20 @@
 </template>
 
 <script>
+import { mapState } from 'vuex'
+
 export default {
   name: 'UserSelect',
-  data () {
-    return {
-      users: [
-        { id: 1, name: 'Testerson' },
-        { id: 2, name: 'Besterson' }
-      ]
-    }
+
+  computed: mapState(['users']),
+
+  created () {
+    this.$store.dispatch('GET_USERS')
+      .then(() => {
+        //
+      })
   }
+
 }
 </script>
 
