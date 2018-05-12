@@ -9,11 +9,16 @@ export default new Vuex.Store({
   strict: true,
 
   state: {
+    colors: [],
     users: [],
     activeUser: {}
   },
 
   mutations: {
+    SET_COLORS (state, payload) {
+      state.colors = payload
+    },
+
     SET_USERS (state, payload) {
       state.users = payload
     },
@@ -24,6 +29,14 @@ export default new Vuex.Store({
   },
 
   actions: {
+    GET_COLORS (context) {
+      return Api.getColors()
+        .then(colors => {
+          context.commit('SET_COLORS', colors)
+        })
+        .catch(error => console.log(error))
+    },
+
     GET_USERS (context) {
       return Api.getUsers()
         .then(users => {

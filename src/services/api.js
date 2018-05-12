@@ -1,6 +1,13 @@
 import axios from 'axios'
 
 export default {
+  getColors () {
+    return axios.get('/api/colors')
+      .then(response => {
+        return response.data
+      })
+  },
+
   getUsers () {
     return axios.get('/api/users')
       .then(response => {

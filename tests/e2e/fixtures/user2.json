@@ -2,5 +2,5 @@
     "id": 2,
     "name": "Darth Vader",
     "active": true,
-    "favoriteColor": "black"
+    "favoriteColor": 2
 }

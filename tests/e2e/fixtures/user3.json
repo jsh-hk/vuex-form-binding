@@ -2,5 +2,5 @@
     "id": 3,
     "name": "Eric Schmidt",
     "active": false,
-    "favoriteColor": "green"
+    "favoriteColor": 4
 }
