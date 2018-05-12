@@ -2,28 +2,71 @@
     <div class="user-detail-form">
         <h3>User details</h3>
         <form>
-            <label for="userName">Name: </label>
-            <input id="userName" type="text">
+            <label
+                for="userName"
+                >Name: </label>
+            <input
+                id="userName"
+                v-model="activeUser.name"
+                type="text">
 
-            <label for="userActive">Active: </label>
-            <input id="userActive" type="checkbox">
+            <label
+                for="userActive"
+                >Active: </label>
+            <input
+                id="userActive"
+                v-model="activeUser.active"
+                type="checkbox">
 
-            <label for="userFavoriteColor">Favorite color: </label>
-            <select id="userFavoriteColor">
-                <option>red</option>
-                <option>black</option>
-                <option>blue</option>
-                <option>green</option>
-                <option>white</option>
+            <label
+                for="userFavoriteColor"
+                >Favorite color: </label>
+            <select
+            v-model="activeUser.favoriteColor"
+                id="userFavoriteColor">
+                <option
+                    v-for="color in colors"
+                    :key="color.id"
+                    :value="color.id"
+                    >{{color.name}}</option>
             </select>
-            <input type="submit" value="Update user">
+            <input
+                @click="updateUser()"
+                type="submit"
+                value="Update user">
         </form>
     </div>
 </template>
 
 <script>
+import { mapState } from 'vuex'
+
 export default {
-  name: 'UserDetailForm'
+
+  computed: {
+    activeUser: {
+      get () {
+        return this.$store.state.activeUser
+      },
+      set (value) {
+
+      }
+    },
+    ...mapState([ 'colors' ])
+  },
+
+  created () {
+    this.$store.dispatch('GET_COLORS')
+      .then(() => {
+        //
+      })
+  },
+
+  methods: {
+    updateUser () {
+      //
+    }
+  }
 }
 </script>
 

@@ -1,12 +1,14 @@
 <template>
-  <div class="user-select">
+  <div class="users">
     <h3>Select a user</h3>
     <select
-      v-model="users">
+      v-model="activeUserId"
+      class="user-select">
       <option
         v-for="user in users"
-        :key="user.id">
-        {{user.name}}
+        :key="user.id"
+        :value="user.id">
+        {{ user.name }}
       </option>
     </select>
   </div>
@@ -16,9 +18,17 @@
 import { mapState } from 'vuex'
 
 export default {
-  name: 'UserSelect',
-
-  computed: mapState(['users']),
+  computed: {
+    activeUserId: {
+      get () {
+        return this.$store.state.activeUser.id
+      },
+      set (value) {
+        this.$store.dispatch('GET_ACTIVE_USER', value)
+      }
+    },
+    ...mapState(['users', 'activeUser'])
+  },
 
   created () {
     this.$store.dispatch('GET_USERS')

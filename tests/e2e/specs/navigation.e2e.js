@@ -1,5 +1,12 @@
 describe('Navigation', () => {
   beforeEach(() => {
+    cy.server()
+    cy.route('GET', '/api/users', 'fixture:users')
+    cy.route('GET', '/api/user/1', 'fixture:user1')
+    cy.route('GET', '/api/user/2', 'fixture:user2')
+    cy.route('GET', '/api/user/3', 'fixture:user3')
+    cy.route('GET', '/api/colors', 'fixture:colors')
+
     cy.visit('/')
   })
   it('Visits the app root url', () => {
@@ -13,6 +20,9 @@ describe('Navigation', () => {
   })
 
   it('Visits the form page', () => {
+    cy.server()
+    cy.route('GET', '/api/users', 'fixture:users')
+
     cy.get('[href="#/form"]')
       .click()
     cy.contains('h1', 'Form binding test')
