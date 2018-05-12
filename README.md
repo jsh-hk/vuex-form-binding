@@ -16,6 +16,6 @@ The above command runs a production build to test against, which means no debug 
 
     npm run serve
 
-then, 
+then,
 
     ./node_modules/.bin/vue-cli-service e2e:open --url http://localhost:8080 (sub in your npm serve url)
